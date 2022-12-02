@@ -1,0 +1,8 @@
+# Schema for the configuration files of the generator_entity_pdf module.
+generator_entity_pdf.settings:
+  type: config_object
+  label: 'generator_entity_pdf settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

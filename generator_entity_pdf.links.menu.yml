@@ -1,0 +1,6 @@
+generator_entity_pdf.settings_form:
+  title: 'generator_entity_pdf'
+  description: 'Configure generator_entity_pdf.'
+  parent: system.admin_config_system
+  route_name: generator_entity_pdf.settings_form
+  weight: 10

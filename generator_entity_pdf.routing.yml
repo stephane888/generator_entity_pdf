@@ -1,0 +1,15 @@
+generator_entity_pdf.example:
+  path: '/generator-entity-pdf/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\generator_entity_pdf\Controller\GeneratorEntityPdfController::build'
+  requirements:
+    _permission: 'access content'
+
+generator_entity_pdf.settings_form:
+  path: '/admin/config/system/generator-entity-pdf'
+  defaults:
+    _title: 'generator_entity_pdf settings'
+    _form: 'Drupal\generator_entity_pdf\Form\SettingsForm'
+  requirements:
+    _permission: 'administer generator_entity_pdf configuration'
