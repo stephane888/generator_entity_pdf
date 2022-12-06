@@ -1,0 +1,7 @@
+services:
+  generator_entity_pdf.generator:
+    class: Drupal\generator_entity_pdf\Services\PdfGenerator
+    arguments: []
+  generator_entity_pdf.entity:
+    class: Drupal\generator_entity_pdf\Services\PdfEntity
+    arguments: ['@renderer']

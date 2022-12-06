@@ -1,5 +1,5 @@
 generator_entity_pdf.example:
-  path: '/generator-entity-pdf/example'
+  path: '/generator-entity-pdf/{entity_type_id}/{id}'
   defaults:
     _title: 'Example'
     _controller: '\Drupal\generator_entity_pdf\Controller\GeneratorEntityPdfController::build'

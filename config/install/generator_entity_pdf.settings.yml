@@ -1,0 +1,9 @@
+orientation: 'P'
+unit: 'mm'
+format: 'A4'
+header:
+  show: false
+  class: '\Drupal\generator_entity_pdf\GeneratorEntityPdf\PdfEntityHeader'
+footer:
+  show: false
+  class: '\Drupal\generator_entity_pdf\GeneratorEntityPdf\PdfEntityFooter'
