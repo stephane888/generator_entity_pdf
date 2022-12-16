@@ -1,6 +1,80 @@
 <?php
 
 /**
+ *
  * @file
  * Primary module hooks for generator_entity_pdf module.
  */
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function generator_entity_pdf_entity_type_alter(array &$entity_types) {
+  // dump($entity_types);
+  // \Stephane888\Debug\debugLog::$themeName = 'wb_horizon_kksa';
+  // \Stephane888\Debug\debugLog::symfonyDebug($entity_types,
+  // 'hook_entity_type_alter', true);
+  // $form['generate_pdf'] = array(
+  // '#type' => 'details',
+  // '#title' => t(' Generateur de PDF. '),
+  // '#group' => 'additional_settings'
+  // );
+  // // Load the current node type configuration entity.
+  // $entity = $form_state->getFormObject()->getEntity();
+  // $form['generate_pdf']['enabled'] = array(
+  // '#type' => 'checkbox',
+  // '#title' => t('Afficher le bouton pour generer le PDF pour ce contenu.'),
+  // '#default_value' => $entity->getThirdPartySetting('generator_entity_pdf',
+  // 'generate_pdf.enabled', 0),
+  // '#description' => "Ce bouton s'affiche uniquement sur le model d'affichage
+  // 'default'"
+  // );
+  // $form['#entity_builders'][] = '_generator_entity_pdf_form_builder';
+}
+
+function _generator_entity_pdf_form_builder($entity_type, $type, &$form, FormStateInterface $form_state) {
+  // dd($entity_type, $type);
+  // if ($form_state->getValue('prise_rendez_vous_enabled') === 1) {
+  // $type->setThirdPartySetting('prise_rendez_vous',
+  // 'prise_rendez_vous_enabled', 1);
+  // return 1;
+  // }
+  // $type->unsetThirdPartySetting('prise_rendez_vous',
+  // 'prise_rendez_vous_enabled');
+}
+
+/**
+ * Implement hook_preprocess_page
+ */
+function generator_entity_pdf_preprocess_page(&$variables) {
+  // $variables['page']['content']['#attached']['library'][] =
+  // 'generator_entity_pdf/jspdf';
+  // $variables['page']['content']['#attached']['library'][] =
+  // 'generator_entity_pdf/html2pdf';
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.cv_entity.canonical') {
+    _generator_entity_pdf_add_custom_button($variables);
+    // dump($variables['page']['content']);
+  }
+}
+
+/**
+ * Mecanisme basique afin d'ajouter le bouton d'impression PDF sur bonne route.
+ */
+function _generator_entity_pdf_add_custom_button(&$variables) {
+  $variables['page']['content']['generate_pdf_button'] = [
+    '#weight' => 10,
+    '#type' => 'html_tag',
+    '#tag' => 'div',
+    '#attributes' => [
+      'id' => 'app-generate-pdf-button'
+    ],
+    '#attached' => [
+      'library' => [
+        'generator_entity_pdf/vuejs_jspdf'
+      ]
+    ]
+  ];
+  $variables['page']['content']['#attributes']['class'][] = "contain-data-to-pdf";
+}
+
